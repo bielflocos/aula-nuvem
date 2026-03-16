@@ -2,12 +2,48 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta name="viewport" content="width=], initial-scale=1.0">
+    <title>Usuários Cadastrados</title>
 </head>
 <body>
-    <h1>Meu site está na NUVEM</h1>
-    <p>Computação em Nuvem é Incrivel</p>
-    <p>Quem leu é gay</p>
+    <h1>Lista de Usuários</h1>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>NOME</th>
+                <th>EMAIL</th>
+                <th>Foto</th>
+            </tr>
+        </thead>
+        <tbody id="tabelaUsuarios"></tbody>
+    </table>
+
+    <script>
+        async function carregarUSuarios(){
+            const resposta = await fetch("/usuarios");
+            const usuarios = await resposta.json();
+
+            const tabela = document.getElementById("tabelaUsarios");
+            tabela.innerHTML = "";
+
+            usuários.forEach(usuario => {
+                tabela.innerHTML += `
+                <tr>
+                    <td>${usuario.id}</td>
+                    <td>${usuario.nome}</td>
+                    <td>${usuario.email}</td>
+                    
+                 <td>
+                    ${usuario.foto ? `<img src="/uploads/${usuario.foto}"
+                    width="60">` :"Sem Foto"}
+
+                 </td>
+                </tr>
+                `
+            })
+        }
+    </script>
 </body>
 </html>
